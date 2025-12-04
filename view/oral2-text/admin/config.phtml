@@ -1,0 +1,112 @@
+<?php
+$escape = $this->plugin('escapeHtml');
+?>
+<h3>Configuration Whisper (Transcription)</h3>
+
+<div class="field">
+    <div class="field-meta">
+        <label for="whisper_model"><?php echo $escape('Modèle Whisper'); ?></label>
+    </div>
+    <div class="inputs">
+        <select name="whisper_model" id="whisper_model">
+            <option value="tiny" <?php echo $whisper_model === 'tiny' ? 'selected' : ''; ?>>Tiny (39M - Très rapide)</option>
+            <option value="base" <?php echo $whisper_model === 'base' ? 'selected' : ''; ?>>Base (74M - Recommandé)</option>
+            <option value="small" <?php echo $whisper_model === 'small' ? 'selected' : ''; ?>>Small (244M - Précis)</option>
+            <option value="medium" <?php echo $whisper_model === 'medium' ? 'selected' : ''; ?>>Medium (769M - Très précis)</option>
+            <option value="large" <?php echo $whisper_model === 'large' ? 'selected' : ''; ?>>Large (1550M - Maximum)</option>
+        </select>
+        <p class="explanation">Plus le modèle est grand, meilleure est la précision (mais plus lent)</p>
+    </div>
+</div>
+
+<div class="field">
+    <div class="field-meta">
+        <label for="whisper_language"><?php echo $escape('Langue par défaut'); ?></label>
+    </div>
+    <div class="inputs">
+        <select name="whisper_language" id="whisper_language">
+            <option value="fr" <?php echo $whisper_language === 'fr' ? 'selected' : ''; ?>>Français</option>
+            <option value="en" <?php echo $whisper_language === 'en' ? 'selected' : ''; ?>>English</option>
+            <option value="ar" <?php echo $whisper_language === 'ar' ? 'selected' : ''; ?>>العربية</option>
+            <option value="es" <?php echo $whisper_language === 'es' ? 'selected' : ''; ?>>Español</option>
+        </select>
+    </div>
+</div>
+
+<hr>
+<h3>Configuration LibreTranslate (Traduction)</h3>
+
+<div class="field">
+    <div class="field-meta">
+        <label for="libretranslate_url"><?php echo $escape('URL API LibreTranslate'); ?></label>
+    </div>
+    <div class="inputs">
+        <input type="text" name="libretranslate_url" id="libretranslate_url" 
+               value="<?php echo $escape($libretranslate_url); ?>" 
+               placeholder="http://localhost:5000/translate">
+        <p class="explanation">
+            <strong>Installation locale :</strong> http://localhost:5000/translate<br>
+            <strong>API publique :</strong> https://libretranslate.com/translate (gratuit, 5 req/min)<br>
+            💡 Pour un usage illimité, lancez LibreTranslate en local
+        </p>
+    </div>
+</div>
+
+<div class="field">
+    <div class="field-meta">
+        <label for="libretranslate_api_key"><?php echo $escape('Clé API (optionnel)'); ?></label>
+    </div>
+    <div class="inputs">
+        <input type="text" name="libretranslate_api_key" id="libretranslate_api_key" 
+               value="<?php echo $escape($libretranslate_api_key); ?>" 
+               placeholder="Laissez vide pour l'installation locale">
+        <p class="explanation">Nécessaire uniquement si vous utilisez l'API publique avec quota illimité</p>
+    </div>
+</div>
+
+<div class="field">
+    <div class="field-meta">
+        <label for="translation_target_language"><?php echo $escape('Langue de traduction par défaut'); ?></label>
+    </div>
+    <div class="inputs">
+        <select name="translation_target_language" id="translation_target_language">
+            <option value="">Pas de traduction automatique</option>
+            <option value="fr" <?php echo $translation_target_language === 'fr' ? 'selected' : ''; ?>>Français</option>
+            <option value="en" <?php echo $translation_target_language === 'en' ? 'selected' : ''; ?>>English</option>
+            <option value="ar" <?php echo $translation_target_language === 'ar' ? 'selected' : ''; ?>>العربية</option>
+            <option value="es" <?php echo $translation_target_language === 'es' ? 'selected' : ''; ?>>Español</option>
+            <option value="de" <?php echo $translation_target_language === 'de' ? 'selected' : ''; ?>>Deutsch</option>
+            <option value="it" <?php echo $translation_target_language === 'it' ? 'selected' : ''; ?>>Italiano</option>
+        </select>
+        <p class="explanation">Langue vers laquelle traduire automatiquement les transcriptions</p>
+    </div>
+</div>
+
+<hr>
+<div class="field">
+    <div class="field-meta">
+        <label>📋 Statut des services</label>
+    </div>
+    <div class="inputs">
+        <button type="button" id="test-libretranslate" class="button">Tester la connexion LibreTranslate</button>
+        <div id="test-result" style="margin-top: 10px;"></div>
+    </div>
+</div>
+
+<script>
+document.getElementById('test-libretranslate').addEventListener('click', function() {
+    const url = document.getElementById('libretranslate_url').value;
+    const resultDiv = document.getElementById('test-result');
+    
+    resultDiv.innerHTML = '⏳ Test en cours...';
+    
+    fetch(url.replace('/translate', '/languages'))
+        .then(response => response.json())
+        .then(data => {
+            resultDiv.innerHTML = '✅ <span style="color: green;">Connexion réussie ! Langues disponibles : ' + data.length + '</span>';
+        })
+        .catch(error => {
+            resultDiv.innerHTML = '❌ <span style="color: red;">Erreur de connexion. Vérifiez que LibreTranslate est lancé sur ' + url + '</span>';
+        });
+});
+</script>

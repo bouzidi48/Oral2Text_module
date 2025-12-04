@@ -1,0 +1,49 @@
+<?php
+$this->htmlElement('body')->appendAttribute('class', 'oral2text');
+$this->headTitle('Oral2Text - Test');
+?>
+
+<h1>Test de transcription audio</h1>
+
+<?php if ($message): ?>
+    <div class="<?php echo $message['success'] ? 'success' : 'error'; ?> messages">
+        <p><?php echo $this->escapeHtml($message['text']); ?></p>
+    </div>
+<?php endif; ?>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="field">
+        <label for="audio_file">Fichier audio</label>
+        <input type="file" name="audio_file" id="audio_file" accept="audio/*" required>
+    </div>
+    
+    <div class="field">
+        <label for="target_language">Traduire vers</label>
+        <select name="target_language" id="target_language">
+            <option value="none">Pas de traduction</option>
+            <option value="fr">Français</option>
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+            <option value="es">Español</option>
+        </select>
+    </div>
+    
+    <div class="field">
+        <label>
+            <input type="checkbox" name="save_to_omeka" value="1" checked>
+            Enregistrer dans Omeka S
+        </label>
+    </div>
+    
+    <button type="submit" class="button">Transcrire</button>
+</form>
+
+<?php if ($transcription): ?>
+    <h2>Transcription</h2>
+    <div><?php echo nl2br($this->escapeHtml($transcription)); ?></div>
+<?php endif; ?>
+
+<?php if ($translation): ?>
+    <h2>Traduction</h2>
+    <div><?php echo nl2br($this->escapeHtml($translation)); ?></div>
+<?php endif; ?>

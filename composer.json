@@ -1,0 +1,16 @@
+{
+    "name": "bouzidi48/oral2text",
+    "description": "Whisper + LibreTranslate pour Omeka S",
+    "type": "omeka-module",
+    "license": "MIT",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-curl": "*",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oral2Text\\": "src/"
+        }
+    }
+}
