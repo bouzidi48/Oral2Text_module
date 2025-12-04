@@ -2,8 +2,8 @@
 
 Module de transcription audio (Whisper) et traduction (LibreTranslate) 100%% gratuit.
 
-## Installation
-# INSTALLATION - Module Oral2Text pour Omeka-S
+# Installation
+
 
 Guide d'installation simplifié pour le module de transcription et traduction audio.
 
