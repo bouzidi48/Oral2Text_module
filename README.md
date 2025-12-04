@@ -19,7 +19,7 @@ Guide d'installation simplifié pour le module de transcription et traduction au
 
 ---
 
-## 📥 Installation étape par étape
+## Installation étape par étape
 
 ### Étape 1 : Installer Python 3.10
 
@@ -29,14 +29,14 @@ Guide d'installation simplifié pour le module de transcription et traduction au
    ```
 
 2. **Lancez l'installateur** et **IMPORTANT** :
-   - ✅ Cochez **"Add Python 3.10 to PATH"**
+   - Cochez **"Add Python 3.10 to PATH"**
    - Cliquez sur **"Install Now"**
 
 3. **Vérifiez l'installation** :
    ```powershell
    python --version
    ```
-   ✅ Devrait afficher : `Python 3.10.9`
+    Devrait afficher : `Python 3.10.9`
 
 ---
 
@@ -50,7 +50,7 @@ pip install openai-whisper
 ```powershell
 whisper --help
 ```
-✅ Devrait afficher l'aide de Whisper
+ Devrait afficher l'aide de Whisper
 
 ---
 
@@ -83,9 +83,9 @@ choco install ffmpeg
 ```powershell
 ffmpeg -version
 ```
-✅ Devrait afficher la version de FFmpeg
+ Devrait afficher la version de FFmpeg
 
-**⚠️ Important :** Redémarrez votre ordinateur après l'installation de FFmpeg.
+** Important :** Redémarrez votre ordinateur après l'installation de FFmpeg.
 
 ---
 
@@ -120,7 +120,7 @@ ffmpeg -version
 
 ---
 
-## 🚀 Lancer LibreTranslate
+## Lancer LibreTranslate
 
 ### Créer un fichier de lancement automatique
 
@@ -137,14 +137,14 @@ pause
 3. **Double-cliquez** sur le fichier pour lancer LibreTranslate
 4. **Laissez la fenêtre ouverte** pendant l'utilisation du module
 
-⚠️ **Note :** Ajustez le chemin si votre Python est installé ailleurs. Vous pouvez le trouver avec :
+ **Note :** Ajustez le chemin si votre Python est installé ailleurs. Vous pouvez le trouver avec :
 ```powershell
 where python
 ```
 
 ---
 
-## ⚙️ Configuration du module
+## Configuration du module
 
 1. Dans Omeka-S, allez dans **Paramètres** (en haut à droite)
 2. Configurez les paramètres Oral2Text :
@@ -154,37 +154,37 @@ where python
 
 ---
 
-## ✅ Vérifications
+## Vérifications
 
 ### Test 1 : Python
 ```powershell
 python --version
 ```
-✅ Doit afficher : `Python 3.10.9`
+ Doit afficher : `Python 3.10.9`
 
 ### Test 2 : Whisper
 ```powershell
 whisper --help
 ```
-✅ Doit afficher l'aide
+ Doit afficher l'aide
 
 ### Test 3 : FFmpeg
 ```powershell
 ffmpeg -version
 ```
-✅ Doit afficher la version
+ Doit afficher la version
 
 ### Test 4 : LibreTranslate
 1. Lancez `start-libretranslate.bat`
 2. Attendez le message : `Running on http://127.0.0.1:5000`
 3. Ouvrez dans un navigateur : `http://127.0.0.1:5000`
-✅ La page LibreTranslate doit s'afficher
+ La page LibreTranslate doit s'afficher
 
 ### Test 5 : Module Oral2Text
 1. Allez sur `http://localhost/omk_thyp_25-26_clone/admin/oral2text`
 2. Enregistrez un audio
 3. Cliquez sur "Transcrire et Sauvegarder"
-✅ La transcription doit s'afficher
+ La transcription doit s'afficher
 
 
 ---
